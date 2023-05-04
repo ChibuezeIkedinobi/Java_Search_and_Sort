@@ -27,7 +27,6 @@ public class binary {
         }
         if (first > last) {
             System.out.println("Element is not found");
-
         }
     }
 }
