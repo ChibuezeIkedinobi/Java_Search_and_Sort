@@ -3,30 +3,43 @@ package binarySearch;
 public class binary {
 
     public static void main(String[] args) {
-        int[] array = {5,3,7,9,2,4,6,1,23,10};
-        int key = 1;
-        int last = array.length - 1;
 
-        binarySearch(array, 0, last, key);
+//        BinarySearch ob = new BinarySearch();
+        int arr[] = { 2, 3, 4, 10, 40 };
+        int n = arr.length;
+        int x = 10;
+        int result = binarySearch(arr, x);
+
+        if (result == -1)
+            System.out.println("Element is not present in array");
+        else
+            System.out.println("Element is present at index " + result);
     }
 
-    public static void binarySearch(int[] array, int first, int last, int key) {
+    // Returns index of x if it is present in arr[],
+    // else return -1
+    public static int binarySearch(int[] arr, int x) {
 
-        int mid = (first + last) / 2;
+        int l = 0, r = arr.length - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
 
-        while (first <= last) {
-            if (array[mid] < key) {
-                first = mid + 1;
-            } else if (array[mid] == key) {
-                System.out.println("Element is found at index: "+mid);
-                break;
-            } else {
-                last = mid - 1;
-            }
-            mid = (first + last) / 2;
+            // Check if x is present at mid
+            if (arr[m] == x)
+                return m;
+
+            // If x greater, ignore left half
+            if (arr[m] < x)
+                l = m + 1;
+
+                // If x is smaller, ignore right half
+            else
+                r = m - 1;
         }
-        if (first > last) {
-            System.out.println("Element is not found");
-        }
+
+        // if we reach here, then element was
+        // not present
+        return -1;
     }
+
 }
